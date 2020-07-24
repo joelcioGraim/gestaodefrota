@@ -63,8 +63,8 @@ public class AbastecimentoController {
 	@Put
 	@Path(value = "/{id}")
 	@Consumes(value = "application/json", options = WithoutRoot.class)
-	public void editar(Abastecimento abastecimento, Long ids) throws ParseException {		
-		abastecimento.setIdAbastecimento(ids);
+	public void editar(Abastecimento abastecimento, Long id) throws ParseException {		
+		abastecimento.setIdAbastecimento(id);
 		abastecimentoDao.atualizar(abastecimento);
 		result.use(status()).ok();
 	}	
