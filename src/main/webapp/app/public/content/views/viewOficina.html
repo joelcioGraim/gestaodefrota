@@ -1,0 +1,141 @@
+<div ng-controller="OficinaCtrl as ctrl">
+
+<!-- <pre>user = {{ctrl.usuario | json}}</pre> -->
+ <div class="panel panel-info panelFormMargin">
+  <div class="panel-heading">
+    <!-- <label for="nome" class="titleLabel">Cadastro de Usuário</label> -->
+    <h3 class="panel-title">Cadastro e Edição de Oficina Credenciada</h3>
+    </div>
+ </div>
+
+<!-- ============================================ Formulário ================================================ -->
+	<form id="form" name="form" class="form-bory panel panel-info panelFormMargin" novalidate>
+	  <div class="row rowFieldMarginForm">
+
+
+        <div class="col-xs-12 col-sm-12 col-md-3">
+          <div class="form-group">
+           <label for="">Nome: </label>
+           <input id="" type="text" class="form-control fieldUpperCase" ng-change="ctrl.oficina.nome = ctrl.oficina.nome.toUpperCase();" placeholder="Nome completo - (minimo 4 caracteres)" ng-model="ctrl.oficina.nome" maxlength="150" minlength="4" focus-if required>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-2">
+          <div class="form-group">
+           <label for="">CNPJ: </label>
+           <input id="" type="text" class="form-control fieldUpperCase" ng-change="ctrl.oficina.cnpj = ctrl.oficina.cnpj.toUpperCase();" placeholder="Digite o CNPJ" ng-model="ctrl.oficina.cnpj" maxlength="18" 
+            onkeydown="Mascara(this,Cnpj);"
+            onkeypress="Mascara(this,Cnpj);"
+            onkeyup="Mascara(this,Cnpj);" 
+           required>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-2">
+          <div class="form-group">
+           <label for="">Telefone: </label>
+           <input id="" type="text" class="form-control fieldUpperCase" ng-change="ctrl.oficina.telefone = ctrl.oficina.telefone.toUpperCase();" placeholder="Digite o telefone" ng-model="ctrl.oficina.telefone" maxlength="15" 
+            onkeydown="Mascara(this,celularComDDD);"
+            onkeypress="Mascara(this,celularComDDD);"
+            onkeyup="Mascara(this,celularComDDD);" 
+           required>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <div class="form-group">
+           <label for="">Endereco: </label>
+           <input id="" type="text" class="form-control fieldUpperCase" ng-change="ctrl.oficina.endereco = ctrl.oficina.endereco.toUpperCase();" placeholder="Endereço completo" ng-model="ctrl.oficina.endereco"   maxlength="300" required>
+          </div>
+        </div>  
+
+        <div class="col-xs-12 col-sm-12 col-md-1">
+          <div class="form-group positionCenter">
+           <label for="">Oficina Ativa:</label>
+           <br>
+           <input id="" type="checkbox" ng-model="ctrl.oficina.ativo"> Sim</input>
+          </div>
+        </div>   
+
+    </div><!-- Fim Row Fields 1 -->     
+
+    <div class="row rowButondMarginForm">
+      <div class="positionRight">            
+        <button class="btn btn-sm btn-info glyphicon glyphicon-ban-circle" type="button" ng-click="ctrl.limparCampos(form, ctrl.oficina)"> Cancelar</button>
+        <button class="btn btn-sm btn-success positionRight glyphicon glyphicon-floppy-disk" ng-click="ctrl.salvar(ctrl.oficina)" type="submit"
+        ng-disabled="form.$invalid || form.$pristine"> Salvar</button>
+      </div>
+    </div>
+	</form>
+
+<!-- ============================================ Lista em Tabela ================================================ -->
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Lista de Oficinas Autorizadas</h3>
+    </div>
+
+    <div class="panel-body">
+    <div class="form-group col-xs-12 col-sm-12 col-md-4">
+      <label for="">Localizar:</label>
+      <input class="form-control" type="text" placeholder="Digite para localizar..." ng-model="search"    
+                               maxlength="150"
+                               ng-minlength="0" />
+    </div>
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>CNPJ</th>
+                  <th>Telefone</th>
+                  <th>Endereço</th>
+                  <th>Data do Registro</th>
+                  <th>Ativo</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr ng-repeat="oficina in ctrl.oficinas | filter: search | orderBy: 'Nome' | filterPaginacao: (ctrl.currentPage - 1) * ctrl.pageSize | limitTo: ctrl.pageSize">
+                  <td>{{$index + 1}}</td>
+                  <td>{{oficina.nome}}</td>
+                  <td>{{oficina.cnpj}}</td>
+                  <td>{{oficina.telefone}}</td>
+                  <td>{{oficina.endereco}}</td>
+                  <td>{{oficina.dataRegistro | dateFormat:'dd-MM-yyyy'}}</td>                
+                  <td ng-show="oficina.ativo == true">Sim</td>
+                  <td ng-show="oficina.ativo == false">Não</td>
+                  <td>
+                      <a id="_editar" ng-click="ctrl.edit(oficina)" class="btn btn-default" role="button">
+                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                          Editar
+                      </a>                   
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12"> 
+          <div class="form-group positionCenter">
+            <uib-pagination total-items="ctrl.oficinas.length" ng-model="ctrl.currentPage" items-per-page="ctrl.pageSize" previous-text="Anterior" next-text="Próximo"></uib-pagination>
+          </div>
+        
+          <div class="form-group positionCenter">
+            Mostrar <select ng-model="ctrl.quantidade" ng-change="ctrl.setItemsPerPage(ctrl.quantidade)">          
+            <option ng-selected="true">5</option>
+            <option>10</option>
+            <option>15</option>
+            <option>20</option>
+            <option>30</option>
+            <option>40</option>
+            <option>50</option>
+            </select> registros de cada vez.
+          </div> 
+        </div> 
+      </div>     
+  </div>
+</div>

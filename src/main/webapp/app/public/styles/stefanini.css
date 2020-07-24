@@ -1,0 +1,230 @@
+.myBody{
+  background-color: linear-gradient(45deg, #95c998 54%, #2b9c38 -7%, #95c998 -28%);e
+
+}
+
+/*CSS Login*/
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+  z-index: 2;e
+}
+.form-signin input[type="text"] {
+  /* margin-bottom: -1px; */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"] {
+ /*  margin-bottom: 10px; */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/*CSS Personalizados */
+/*Validaçoes de formulários AngularJS */
+
+input.ng-invalid
+{
+  border: solid red 1px;
+}
+
+input.ng-pristine
+{
+  border: solid gray 1px;
+}
+
+/* Layout Principal */
+/* Topo */
+.topoMargin{
+   color: #fff;
+   text-align: center;
+   background: linear-gradient(45deg, #95c998 54%, #2b9c38 -7%, #95c998 -28%);
+
+}
+
+.marginNavbarTopo{
+  margin-bottom: -2px !important;
+}
+
+/* Content */
+.conteudo{
+  background-color: #95c998 67%;
+}
+
+.marginFieldsBottom{
+   margin-bottom: 5px !important;
+}
+
+/* Rodape */
+.rodapeMargin{
+   margin-top: -14px;
+   color: #b1aeae;
+   text-align: center;
+   background: linear-gradient(#FFF 36%, #95c998 67%);
+}
+
+.logoStefanini{
+  padding: 5px;
+}
+
+.navbarNoneBorder{
+  border: none;
+  background-color: white;
+}
+
+/* Positions */
+.positionRight {
+  text-align:right;
+}
+
+.positionLeft {
+  text-align:left;
+}
+
+.positionCenter {
+  text-align:center;
+}
+
+/* Login */
+.marginPanelLogin{
+  margin-bottom: 31px !important;
+}
+
+.marginFields{
+   margin-top: 5px !important;
+}
+
+/* Menu */
+.marginNavbarMenu{
+  margin-bottom: 5px !important;
+}
+
+/* Forms */
+.rowFieldMarginForm {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.rowButondMarginForm {
+  margin-right: 15px;
+  margin-left: 5px;
+  margin-top: 15px;
+  padding-bottom: 5px;
+}
+
+.panelFormMargin{
+  margin-bottom: -3px !important;
+}
+
+/* Ítens */
+.itemMargin{
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+
+.panelBodyItem{
+  padding: none !important;
+}
+
+.fieldUpperCase{
+  text-transform: uppercase;
+}
+
+.fieldlowerCase{
+  text-transform: lowercase;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    text-transform: none;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    text-transform: none;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    text-transform: none;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    text-transform: none;
+}
+
+/* Labels */
+.titleMenu {
+  color: #204d74;
+  font-size: 15px;
+}
+
+.titleLabel {
+  color: #204d74;
+  font-size: 25px;
+}
+
+/* Combobox */
+.combobox {
+  width: 100%;
+  height: 33px;
+}
+
+.selectInvalid {
+  color: gray;
+}
+
+/* Alert */
+.alturaAlert{
+  height: 30px;
+  padding: 5px;
+}
+
+.titleColorBackground{
+  background-color: #d9edf7; 
+}
+
+.titleColor{
+  font-size: 16px;
+  color: #31708f;
+}
+
+/* CALENDAR */
+.marginMyCalendar{  
+  margin-bottom: 31px !important;
+}
+
+.myCalendarCSS{ 
+  margin-top: 10px;
+}
+
+.panelMyCalendar{
+  width: 100%; 
+  float: right; 
+}
+
+/* For Firefox */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

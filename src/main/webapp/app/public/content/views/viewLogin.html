@@ -1,0 +1,31 @@
+<div ng-controller="LoginCtrl as ctrl">
+<!-- <pre>user = {{ctrl.usuario | json}}</pre> -->
+	<div class="navbar navbar-default topoMargin">
+		<!-- <a href="">
+               <img src= "{{ctrl.imagePath.PATHINPORT}}/img/stefanini-logo.png" alt="" title="Link para o site da Stefanini" width="200" height="130"  class="img-responsive center-block"/>
+         </a> -->
+		<h4>Sistema de Gestão de Frota</h4>
+	</div>
+
+	<div class="container droppedHover">
+
+		<form id="form" name="form" class="form-signin panel panel-info marginPanelLogin" novalidate>
+	         <h3 class="form-signin-heading text-center" contenteditable="false">Autenticação</h3>
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-user"></i></span>
+		        <input class="form-control" placeholder="Seu login" type="text" ng-model="ctrl.usuario.login" aria-describedby="basic-addon1" focus-if required>
+	        </div>
+			
+			<div class="input-group marginFields">
+				<span class="input-group-addon marginFields" id="basic-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+		        <input class="form-control" placeholder="Sua senha" type="password" ng-model="ctrl.usuario.senha" aria-describedby="basic-addon1" required>
+	        </div>
+
+			<!-- Alertas -->
+	        <div class="alert alert-danger marginFields alturaAlert" role="alert" ng-show="ctrl.exibeErro">Login ou Senha inválido!</div>
+	            <!-- <input value="remember-me" class="" type="checkbox">Remember me</label> -->
+	        <button class="btn btn-lg btn-primary btn-block marginFields" type="submit" ng-click="ctrl.logar(ctrl.usuario, form)" aria-label="Left Align" ng-disabled="form.$invalid"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Entrar</button>
+	    </form>	   
+	</div>	
+</div>

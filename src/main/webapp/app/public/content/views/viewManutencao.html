@@ -1,0 +1,339 @@
+<div ng-controller="ManutencaoCtrl as ctrl">
+
+  <!-- <pre>user = {{ctrl.usuario | json}}</pre> -->
+  <div class="panel panel-info panelFormMargin">
+    <div class="panel-heading">
+      <h3 class="panel-title">Cadastro e Edição de Manutenção</h3>
+    </div>
+  </div> <!-- fim título form 1 -->
+  <!-- ============================================ Formulário ================================================ -->
+  <form id="form" name="form" class="form-bory panel panel-info panelFormMargin" novalidate >
+
+  	<div class="row rowFieldMarginForm">
+
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="form-group">
+         <label for="">Veículo:</label>
+         <select ng-model="ctrl.manutencao.veiculo" class="combobox" ng-options="veiculo.idVeiculo + ' - ' + veiculo.marca + ', ' + veiculo.modelo + ', ' + veiculo.cor + ', ' + veiculo.placa for veiculo in ctrl.veiculos track by veiculo.idVeiculo">
+           <option value="" disabled selected class="selectInvalid">Selecionar...</option>
+         </select>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="form-group">
+         <label for="">Oficina:</label>
+         <select ng-model="ctrl.manutencao.oficina" class="combobox" ng-options="oficina.nome for oficina in ctrl.oficinas track by oficina.idOficina">
+           <option value="" disabled selected class="selectInvalid">Selecionar...</option>
+         </select>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="form-group">
+         <label for="">Nome do Mecânico: </label>
+         <input id="" type="text" class="form-control fieldUpperCase" placeholder="Digite o nome" ng-model="ctrl.manutencao.nomemecanico" ng-change="ctrl.manutencao.nomemecanico = ctrl.manutencao.nomemecanico.toUpperCase();" maxlength="150" required>
+        </div>
+      </div>
+         
+    </div><!-- Fim Row Fields 1 -->
+
+    <div class="row rowFieldMarginForm">
+         
+        <div class="col-xs-12 col-sm-12 col-md-2">
+          <div class="form-group">
+           <label for="tipo">KM Saída:</label>
+             <div class="input-group">
+               <span class="input-group-addon">KM</span>     
+               <input id="" type="text" class="form-control" placeholder="Km Saída" ng-model="ctrl.manutencao.kmsaida"  
+               onkeydown="Mascara(this,Integer);"
+               onkeypress="Mascara(this,Integer);"
+               onkeyup="Mascara(this,Integer);"
+               maxlength="50">
+             </div>
+          </div>
+        </div>
+
+         <div class="col-xs-12 col-sm-12 col-md-2">
+          <div class="form-group ">
+           <label for="">Data de Início:</label>
+           <div saida-date model="ctrl.manutencao.dtinicio" value="'Data1'"></div>
+          </div>
+        </div>
+
+         <div class="col-xs-12 col-sm-12 col-md-2">
+          <div class="form-group">
+           <label for="tipo">KM Retorno:</label>
+             <div class="input-group">
+               <span class="input-group-addon">KM</span>     
+               <input id="" type="text" class="form-control" placeholder="Km Retorno" ng-model="ctrl.manutencao.kmretorno"  
+               onkeydown="Mascara(this,Integer);"
+               onkeypress="Mascara(this,Integer);"
+               onkeyup="Mascara(this,Integer);"
+               maxlength="50">
+             </div>
+          </div>
+        </div>
+
+         <div class="col-xs-12 col-sm-12 col-md-2">
+          <div class="form-group ">
+           <label for="">Data de Fim:</label>
+           <div saida-date model="ctrl.manutencao.dtfim" value="'Data1'"></div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-2">
+          <div class="form-group positionCenter">
+            <label for="">Autorizado:</label>  
+            <br>
+            <input id="" type="checkbox" ng-model="ctrl.manutencao.autorizado"> Sim</input>   
+          </div>
+        </div> 
+      
+        <div class="col-xs-12 col-sm-12 col-md-2 positionRight">
+          <div class="form-group positionCenter">
+           <label for="">Manutenção Ativa:</label>
+            <br>
+            <input id="" type="checkbox" ng-model="ctrl.manutencao.ativo"> Sim</input>      
+          </div>
+        </div>
+
+    </div> <!-- Fim Row Fields 2 -->   
+
+    <!-- ============================================ Itens ====================================================== -->
+    <div class="row rowFieldMarginForm itemMargin">  
+
+        <div class="panel panel-info panelFormMargin">
+          <div class="panel-heading">            
+            <h3 class="panel-title">Cadastro e Edição de Ítem</h3>
+          </div>
+        </div> <!-- fim título ítens -->
+          
+        <div class="col-xs-12 col-sm-12 col-md-4">      
+            <form class="form-bory panel panel-infoformItemMargin panelFormMargin" name="formItem" novalidate>
+              
+              <div class="row rowFieldMarginForm">            
+
+                <div class="form-group">
+                  <label for="">Descrição:</label>
+                    <input id="" type="text" class="form-control fieldUpperCase" placeholder="Digite a decrição do ítem" ng-model="ctrl.itens.descricao" ng-change="ctrl.itens.descricao = ctrl.itens.descricao.toUpperCase();" maxlength="200">
+                </div>
+
+                <div class="form-group">
+                  <label for="">Quantidade:</label>
+                    <div class="input-group">
+                      <span class="input-group-addon">QTD</span>  
+                        <input id="" type="number" class="form-control" placeholder="Digite a quantidade do ítem" ng-model="ctrl.itens.qtd"  maxlength="10">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="">Valor Unitário:</label>
+                    <div class="input-group">
+                      <span class="input-group-addon">R$</span> 
+                        <input id="" type="text" class="form-control" placeholder="Digite o valor unitário do ítem" ng-model="ctrl.itens.valorUnitario" maxlength="50"
+                        onkeydown="Mascara(this,Valor);"
+                        onkeypress="Mascara(this,Valor);"
+                        onkeyup="Mascara(this,Valor);">
+                    </div>
+                </div> 
+
+              </div>  <!-- fim row 1 fields itens -->   
+                  
+              <div class="row rowButondMarginForm">
+                <div class="positionCenter itemMargin">  
+                   <button ng-click="ctrl.limparCampos()" type="button" class="btn btn-sm btn-info glyphicon glyphicon-ban-circle"> Cancelar</button>
+              
+                   <button ng-click="ctrl.adicionaItem(ctrl.itens)" type="button" class="btn btn-sm btn-success glyphicon glyphicon-ok" ng-show="ctrl.botaoAdd" ng-disabled="form.$pristine"> Adicionar Ítem</button>
+
+                   <button ng-click="ctrl.addEditItem(ctrl.itens)" type="button" class="btn btn-sm btn-success glyphicon glyphicon-ok" ng-show="ctrl.botoesEdit"> Salvar Edição</button>              
+                </div> 
+
+              </div> <!-- fim row 2 buttons itens -->
+             
+            </form> <!-- fim form 2 -->
+
+        </div> <!-- fim div formulário ítens-->   
+  
+        <div class="col-xs-12 col-sm-12 col-md-8">  
+                 
+            <div class="panel panel-info marginFields">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Lista de Ítens Cadastrados</h3>
+              </div>
+            </div> <!-- fim título lista de ítens -->
+
+            <div class="panel-body panelBodyItem">
+                <div class="form-group col-xs-12 col-sm-12 col-md-6">
+                  <label for="">Localizar:</label>
+                  <input class="form-control" type="text" placeholder="Digite para localizar..." ng-model="search" maxlength="150" ng-minlength="0" />
+                </div> <!-- fim localizar -->
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Descrição</th>
+                            <th>Quantidade</th>
+                            <th>Valor Unitário</th>
+                            <th>Valor Total</th>                                                     
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="item in ctrl.itens | filter: search | orderBy: '' | filterPaginacao: (ctrl.currentPage - 1) * ctrl.pageSize | limitTo: ctrl.pageSize">
+                            <td>{{$index + 1}}</td>
+                            <td>{{item.descricao}}</td>
+                            <td>{{item.qtd}}</td>
+                            <td>{{item.valorUnitario | currency:'R$ '}}</td>
+                            <td>{{ctrl.valorTotal | currency:'R$ '}}</td>                              
+                            <td>
+                                <a id="_editar" ng-click="ctrl.editItem(item)" class="btn btn-default" role="button">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>                   
+                            </td>
+                            <td>
+                                <a id="_deletar" ng-click="ctrl.deleteItem(item)" class="btn btn-default" role="button">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </a>                   
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div> <!-- fim table ítens -->
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group positionCenter">
+                    <uib-pagination total-items="ctrl.itens.length" ng-model="ctrl.currentPage" items-per-page="ctrl.pageSize" previous-text="Anterior" next-text="Próximo"></uib-pagination>
+                  </div>
+                  <div class="form-group positionCenter">
+                    Mostrar <select ng-model="ctrl.quantidade" ng-change="ctrl.setItemsPerPage(ctrl.quantidade)">          
+                    <option ng-selected="true">5</option>
+                    <option>10</option>
+                    <option>15</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                    </select> registros de cada vez.
+                  </div>
+                </div> <!-- fim paginação itens -->
+
+            </div>  <!-- fim panel-body -->
+          
+        </div> <!-- Fim lista de Ítens -->
+    </div> <!-- Fim row de ítens 3-->    
+
+    <!-- ================================ Continuação do formulário principal ==================================== -->    
+    <div class="row rowFieldMarginForm">        
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+             <label for="">Observação:</label>            
+              <wysiwyg textarea-id="" textarea-class="form-control"  
+              textarea-height="180px" textarea-name="textareaQuestion" textarea-menu="ctrl.customMenu"
+              ng-model="ctrl.manutencao.descricao" enable-bootstrap-title="true"></wysiwyg>
+            </div>
+          </div> 
+    </div> <!-- Fim Row Fields Observação 4 -->   
+
+    <div class="row rowButondMarginForm">
+    	       <div class="positionRight">
+    		        <button class="btn btn-sm btn-info glyphicon glyphicon-ban-circle" type="button" ng-click="ctrl.limparCampos(form, ctrl.manutencao)"> Cancelar</button>
+    		        <button class="btn btn-sm btn-success positionRight glyphicon glyphicon-floppy-disk" ng-click="ctrl.salvar(ctrl.manutencao)" type="submit"
+    		        ng-disabled="form.$invalid || form.$pristine"> Salvar</button>
+    	       </div>
+    </div> <!-- Fim Row botões formulário 5 -->
+    
+  </form>
+ 
+  <!-- ============================================ Lista em Tabela ================================================ -->
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Lista de Manutenções Cadastradas</h3>
+    </div>
+  </div> <!-- fim título lista manutenção -->
+
+    <div class="panel-body">
+      <div class="form-group col-xs-12 col-sm-12 col-md-4">
+        <label for="">Localizar:</label>
+        <input class="form-control" type="text" placeholder="Digite para localizar..." ng-model="search"                maxlength="150" ng-minlength="0" />
+      </div> <!-- fim localizar -->
+
+      <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Veículo</th>
+                      <th>Oficina</th>
+                      <th>Nome do Mecânico</th>
+                      <th>KM Saída</th>
+                      <th>KM Retorno</th>
+                      <th>Data de Início</th>
+                      <th>Data de Fim</th>
+                      <th>Autorização</th>                
+                      <th>Ativo</th> 
+                      <th>Itens Utilizados</th>                              
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr ng-repeat="manutencao in ctrl.manutencoes | filter: search | orderBy: '' | filterPaginacao: (ctrl.currentPage - 1) * ctrl.pageSize | limitTo: ctrl.pageSize">
+                      <td>{{$index + 1}}</td>
+                      <td>{{manutencao.veiculo.idVeiculo}}, {{manutencao.veiculo.modelo}}, {{manutencao.veiculo.cor}}, {{manutencao.veiculo.placa}}</td>
+                      <td>{{manutencao.oficina.nome}}</td>
+                      <td>{{manutencao.nomemecanico}}</td>
+                      <td>{{manutencao.kmsaida}}</td>
+                      <td>{{manutencao.kmretorno}}</td>  
+                      <td>{{manutencao.dtinicio | dateFormat: 'dd/MM/yyyy'}}</td>
+                      <td>{{manutencao.dtfim | dateFormat: 'dd/MM/yyyy'}}</td>
+                      <td ng-show="manutencao.autorizado == true">Sim</td>
+                      <td ng-show="manutencao.autorizado == false">Não</td>    
+                      <td ng-show="manutencao.ativo == true">Sim</td>
+                      <td ng-show="manutencao.ativo == false">Não</td>
+                      <td>
+                          <ol>
+                            <li ng-repeat="item in manutencao.itens">
+                                {{item.descricao}}, {{item.qtd}}, {{item.valorUnitario | currency:'R$ '}}.
+                            </li>
+                          </ol>
+
+                      </td>
+                      <td>
+                          <a id="_editar" ng-click="ctrl.edit(manutencao)" class="btn btn-default" role="button">
+                              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                              Editar
+                          </a>                   
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+      </div> <!-- fim table manutenção -->
+
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group positionCenter">
+          <uib-pagination total-items="ctrl.manutencoes.length" ng-model="ctrl.currentPage" items-per-page="ctrl.pageSize" previous-text="Anterior" next-text="Próximo"></uib-pagination>
+        </div> <!-- fim botão edit  -->
+
+        <div class="form-group positionCenter">
+          Mostrar <select ng-model="ctrl.quantidade" ng-change="ctrl.setItemsPerPage(ctrl.quantidade)">          
+          <option ng-selected="true">5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option>
+          </select> registros de cada vez.
+        </div>
+      </div> <!-- fim paginação manutenção -->
+
+    </div>
+  
+</div>

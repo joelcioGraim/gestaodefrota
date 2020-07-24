@@ -1,0 +1,113 @@
+
+<html ng-app="app">
+<head>	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Gestão de Frota</title>
+
+    <!-- Indica aos navegadores para nÃ£o fazer cache-->
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <!-- CSS utilizados pelo sistema-->
+    <link rel="stylesheet" href="app/public/libs/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="app/public/libs/bootstrap-datepicker/datepicker3.css">
+    <link rel="stylesheet" href="app/public/styles/stefanini.css"/>
+    <link rel="stylesheet" href="app/public/libs/AngularJS-Toaster/toaster.css"/>
+    <link rel="stylesheet" href="app/public/libs/fullcalendar/dist/fullcalendar.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+       
+</head>
+
+<body ng-controller="MainCtrl as ctrl" class="myBody">
+
+<!-- ============================================= DEFAULT TEMPLATE START ================================================= -->
+    <!-- DEFAULT ALERTS -->
+    <div class="plain-alert">
+     <toaster-container toaster-options="{'animation-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    
+    <!-- DEFAULT MENU -->
+    <div main-menu ng-show="ctrl.exibeMenu"></div> <!-- Directiva menu -->
+
+    <!-- CONTENT -->
+    <div ng-view="" class="conteudo"><!-- Aqui vai a renderizaÃ§Ã£o das views--></div>
+
+    <!-- DEFAULT FOOTER -->
+    <div main-rodape></div>
+
+<!-- ============================================= DEFAULT COTROLLERS START =============================================== -->
+    <!-- Auxiliares Controllers -->
+    <script src="app/public/libs/jquery/dist/jquery.js"></script>
+    <script src="app/public/libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="app/public/libs/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="app/public/libs/myUtilits/date-pt-BR.js"></script>
+    <script src="app/public/libs/myUtilits/MasksField.js"></script>
+    <script src="app/public/libs/moment/min/moment-with-locales.min.js"></script>
+    <script src="app/public/libs/ydndb/ydn.db-isw-core-e-qry-text-dev.js"></script>  
+    <script src="app/public/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>  
+    <script src="app/public/libs/bootstrap-datepicker/bootstrap-datepicker.pt-BR.js"></script>  
+
+    <!-- AngularJs Controllers -->
+    <script src="app/public/libs/angular/angular.js"></script>
+    <script src="app/public/libs/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="app/public/libs/angular-locale/app/scripts/angular-locale_pt-br.js"></script>
+    <script src="app/public/libs/angular-focus-if/focusIf.min.js"></script>
+    <script src="app/public/libs/angular-resource/angular-resource.js"></script>
+    <script src="app/public/libs/angular-route/angular-route.js"></script>
+    <script src="app/public/libs/angular-animate/angular-animate.js"></script>
+    <script src="app/public/libs/angular-touch/angular-touch.js"></script>    
+    <script src="app/public/libs/AngularJS-Toaster/toaster.js"></script>
+    <script src="app/public/libs/angular-wysiwyg/demo/scripts/bootstrap-colorpicker-module.js"></script>
+    <script src="app/public/libs/angular-wysiwyg/dist/angular-wysiwyg.js"></script>        
+    <script src="app/public/libs/fullcalendar/dist/fullcalendar.min.js"></script>    
+    <script src="app/public/libs/fullcalendar/dist/gcal.js"></script>
+    <script src="app/public/libs/fullcalendar/dist/lang/pt-br.js"></script>
+    <script src="app/public/libs/angular-ui-calendar/src/calendar.js"></script>  
+
+    <!-- Default Controllers -->
+    <script src="app/public/content/app.js"></script>
+    <script src="app/public/content/controllers/controllerLogin.js"></script>    
+    <script src="app/public/content/controllers/controllerHome.js"></script>
+    <script src="app/public/content/controllers/controllerUsuario.js"></script>
+    <script src="app/public/content/controllers/controllerVeiculo.js"></script>
+    <script src="app/public/content/controllers/controllerSolicitacao.js"></script> 
+    <script src="app/public/content/controllers/controllerPosto.js"></script>   
+    <script src="app/public/content/controllers/controllerAbastecimento.js"></script>
+    <script src="app/public/content/controllers/controllerManutencao.js"></script>  
+    <script src="app/public/content/controllers/controllerOficina.js"></script>  
+    <script src="app/public/content/controllers/controllerTracarSenha.js"></script>  
+    <script src="app/public/content/controllers/controllerEventoCalendar.js"></script>  
+
+    <!-- Directive Controllers -->
+    <script src="app/public/content/controllers/controllerMenu.js"></script>
+    <script src="app/public/content/controllers/controllerRodape.js"></script>
+    <script src="app/public/content/controllers/DatesControl/controllerDateSaida.js"></script>
+    <script src="app/public/content/controllers/DatesControl/controllerDateRetorno.js"></script>
+
+    <!-- Service Controllers -->
+    <script src="app/public/content/services/serviceYdn.js"></script>
+    <script src="app/public/content/services/serviceAutenticar.js"></script>
+    <script src="app/public/content/services/serviceUsuario.js"></script>
+    <script src="app/public/content/services/servicePerfilService.js"></script>
+    <script src="app/public/content/services/serviceVeiculo.js"></script>
+    <script src="app/public/content/services/serviceSolicitacao.js"></script>
+    <script src="app/public/content/services/servicePosto.js"></script>
+    <script src="app/public/content/services/serviceAbastecimento.js"></script>
+    <script src="app/public/content/services/serviceManutencao.js"></script>
+    <script src="app/public/content/services/serviceOficina.js"></script>
+    <script src="app/public/content/services/serviceItem.js"></script>
+
+    <!-- Filter Controllers -->  
+     <script src="app/public/content/filters/filterPaginacao.js"></script>
+     <script src="app/public/content/filters/filterDateFormat.js"></script>
+     <script src="app/public/content/filters/filterDateRest.js"></script>
+    
+
+</body>
+<html>

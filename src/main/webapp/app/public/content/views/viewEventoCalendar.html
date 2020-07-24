@@ -1,0 +1,63 @@
+<div class="modal-content">
+	<div class="modal-header titleColorBackground">
+	  <button type="button" class="close" ng-click="ctrl.sair()">&times;</button>
+	  <h4 class="modal-title titleColor">{{ctrl.titulo}}</h4>
+	</div>
+  	<div class="modal-body">   
+       
+       <!--  <div class="alert alert-info alturaAlert" role="alert"> -->
+          <div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="table-responsive">
+	          <table class="table table-hover table-bordered">
+	              <thead>
+	              <tr>
+	                  <th>#</th>
+	                  <th>Data Início</th>
+	                  <th>Data Fim</th>
+	                  <!-- <th>Posto Credenciado</th>                  
+	                  <th>Quilometragem</th>
+	                  <th>Lítros Abastecido</th>
+	                  <th>Tipo de Combustível</th>   
+	                  <th>Data do Abastecimento</th>   -->                   
+	              </tr>
+	              </thead>
+
+	             <!--  <tbody>
+	              <tr ng-repeat="evento in ctrl.eventos | filter: search | orderBy: '' | filterPaginacao: (ctrl.currentPage - 1) * ctrl.pageSize | limitTo: ctrl.pageSize">
+	                  <td>{{$index + 1}}</td> -->
+	                <!--   <td>{{evento.start._d | dateFormat: 'dd/MM/yyyy'}}</td>
+	                  <td>{{evento.end._d | dateFormat: 'dd/MM/yyyy'}}</td> -->
+	                 <!--  <td>{{abastecimento.postoCredenciado.nome}}</td>
+	                  <td>{{abastecimento.quilometragem | currency : 'KM '}}</td>
+	                  <td>{{abastecimento.litroAbastecido | currency : 'L '}}</td>
+	                  <td>{{abastecimento.tipoCombustivel}}</td>  
+	                  <td>{{abastecimento.dataAbastecimento | dateFormat: 'dd/MM/yyyy'}}</td>  --> 
+	            <!--   </tr>
+	              </tbody> -->
+	            </table>
+          	</div>        	
+    	  </div>
+    	<!-- </div> -->
+
+    	<div class="col-xs-12 col-sm-12 col-md-12">
+          	<div class="form-group positionCenter">
+            	<uib-pagination total-items="ctrl.eventos.length" ng-model="ctrl.currentPage" items-per-page="ctrl.pageSize" previous-text="Anterior" next-text="Próximo"></uib-pagination>
+            </div>
+            <div class="form-group positionCenter">
+              Mostrar <select ng-model="ctrl.quantidade" ng-change="ctrl.setItemsPerPage(ctrl.quantidade)">          
+              <option ng-selected="true">5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+              </select> registros de cada vez.
+            </div>
+        </div>
+       
+    </div> <!-- fim body --> 
+	<div class="modal-footer">	  
+	  <button type="button" class="btn btn-sm btn-info positionRight glyphicon glyphicon-off" ng-click="ctrl.sair()"> Sair</button>
+	</div>
+</div><!-- /.modal-content  -->

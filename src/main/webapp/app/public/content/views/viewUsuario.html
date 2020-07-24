@@ -1,0 +1,157 @@
+<div ng-controller="UsuarioCtrl as ctrl">
+
+<!-- <pre>user = {{ctrl.usuario | json}}</pre> -->
+ <div class="panel panel-info panelFormMargin">
+  <div class="panel-heading">
+    <!-- <label for="nome" class="titleLabel">Cadastro de Usuário</label> -->
+    <h3 class="panel-title">Cadastro e Edição de Usuário</h3>
+    </div>
+ </div>
+
+<!-- ============================================ Formulário ================================================ -->
+	<form id="form" name="form" class="form-bory panel panel-info panelFormMargin" novalidate>
+	  <div class="row rowFieldMarginForm">
+
+
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <div class="form-group">
+           <label for="">Nome: </label>
+           <input id="" type="text" class="form-control fieldUpperCase" ng-change="ctrl.usuario.nome = ctrl.usuario.nome.toUpperCase();" placeholder="Nome completo - (minimo 4 caracteres)" ng-model="ctrl.usuario.nome"   maxlength="150" minlength="4" focus-if required>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <div class="form-group">
+           <label for="tipo">Eamil:</label>
+           <input id="" class="form-control" type="email" placeholder="E-mail" ng-model="ctrl.usuario.email" maxlength="150">
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <div class="form-group">
+           <label for="perfil">Perfil:</label>
+           <select ng-model="ctrl.usuario.perfil" class="combobox" ng-options="perfil.descricao for perfil in ctrl.perfis track by perfil.idPerfil"  required>
+             <option value="" disabled selected class="selectInvalid">Selecionar...</option>
+           </select>
+          </div>
+        </div>
+
+    </div><!-- Fim Row Fields 1 -->
+
+    <div class="row rowFieldMarginForm">
+
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <div class="form-group">
+           <label for="">Login:</label>
+           <input id="" type="text" class="form-control" placeholder="Digite seu login - (minimo 4 caracteres)" ng-model="ctrl.usuario.login" maxlength="100" minlength="4" required>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4" ng-show="ctrl.exibeSenha">
+          <div class="form-group">
+           <label for="">Senha:</label>
+           <input id="" type="password" class="form-control" placeholder="Digite sua senha - (minimo 6 caracteres)" ng-model="ctrl.usuario.senha" maxlength="100" minlength="6" required>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-4" ng-show="ctrl.exibeSenha">
+          <div class="form-group">
+           <label for="">Confirme a senha:</label>
+           <input id="" type="password" class="form-control" placeholder="Repita sua senha" ng-model="ctrl.confirmaSenha" maxlength="100" minlength="6" required>
+
+           <!-- alertas -->
+         <div class="alert alert-success alturaAlert" role="alert" ng-show="ctrl.usuario.senha == ctrl.confirmaSenha && ctrl.confirmaSenha != null">Confirmado!</div>
+         <div class="alert alert-danger alturaAlert" role="alert" ng-show="ctrl.usuario.senha != ctrl.confirmaSenha && ctrl.confirmaSenha != null">Não Confirmado!</div>
+          </div>
+        </div>
+    </div>
+
+      <div class="row rowFieldMarginForm">
+        <div class="col-xs-12 col-sm-12 col-md-12 positionCenter">
+          <div class="form-group">
+           <label for="">Usuário Ativo:</label>
+           <br>
+           <input id="" type="checkbox" ng-model="ctrl.usuario.ativo"> Sim</input>
+          </div>
+        </div>
+
+      </div><!-- Fim Row Fields 2 -->
+
+       <div class="row rowButondMarginForm">
+	       <div class="positionRight">            
+		        <button class="btn btn-sm btn-info glyphicon glyphicon-ban-circle" type="button" ng-click="ctrl.limparCampos(form, ctrl.usuario)"> Cancelar</button>
+		        <button class="btn btn-sm btn-success positionRight glyphicon glyphicon-floppy-disk" ng-click="ctrl.salvar(ctrl.usuario)" type="submit"
+		        ng-disabled="form.$invalid || form.$pristine || ctrl.usuario.senha != ctrl.confirmaSenha"> Salvar</button>
+	       </div>
+        </div>
+	</form>
+
+<!-- ============================================ Lista em Tabela ================================================ -->
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Lista de Usuarios Cadastrados</h3>
+    </div>
+
+    <div class="panel-body">
+    <div class="form-group col-xs-12 col-sm-12 col-md-4">
+      <label for="">Localizar:</label>
+      <input class="form-control" type="text" placeholder="Digite para localizar..." ng-model="search"    
+                               maxlength="150"
+                               ng-minlength="0" />
+    </div>
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Perfil</th>
+                  <th>Ativo</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr ng-repeat="usuario in ctrl.usuarios | filter: search | orderBy: 'Nome' | filterPaginacao: (ctrl.currentPage - 1) * ctrl.pageSize | limitTo: ctrl.pageSize">
+                  <td>{{$index + 1}}</td>
+                  <td>{{usuario.nome}}</td>
+                  <td>{{usuario.email}}</td>
+                  <td>{{usuario.perfil.descricao}}</td>                
+                  <td ng-show="usuario.ativo == true">Sim</td>
+                  <td ng-show="usuario.ativo == false">Não</td>
+                  <td>
+                      <a id="_editar" ng-click="ctrl.edit(usuario)" class="btn btn-default" role="button">
+                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                          Editar
+                      </a>                   
+                  </td>
+              </tr>
+              </tbody>
+          </table>        
+        </div>
+      </div>
+		
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group positionCenter">
+              <uib-pagination total-items="ctrl.usuarios.length" ng-model="ctrl.currentPage" 
+                 items-per-page="ctrl.pageSize" 
+                 previous-text="Anterior" 
+                 next-text="Próximo" ng-change="ctrl.itensNa(ctrl.usuarios)"></uib-pagination>
+            </div>
+            <div class="form-group positionCenter">
+              Mostrar <select ng-model="ctrl.quantidade" ng-change="ctrl.setItemsPerPage(ctrl.quantidade)">          
+              <option ng-selected="true">2</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+              </select> registros de cada vez.
+            </div>       
+         </div>  
+    </div>
+  </div>
+</div>

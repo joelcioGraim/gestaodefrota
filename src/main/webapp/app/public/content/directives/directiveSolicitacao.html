@@ -1,0 +1,68 @@
+<div ng-controller="SolicitacaoCtrl as ctrl"> 
+<!-- <pre>user = {{ctrl.solicitacao | json}}</pre> -->
+  	<div class="row rowFieldMarginForm">
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group ">
+             <label for="perfil">Data de Saída:</label>
+             <div saida-date model="ctrl.solicitacao.dtsaida" value="'Data'"></div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="">Data de Retorno:</label>
+              <div retorno-date model="ctrl.solicitacao.dtretorno" value="'Data'"></div>
+            </div>
+          </div>
+          
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="form-group">
+             <label for="tipo">Destino:</label>
+             <input id="" type="text" class="form-control fieldUpperCase" placeholder="Digite o Destino" ng-model="ctrl.solicitacao.destino" ng-change="ctrl.solicitacao.destino=ctrl.solicitacao.destino.toUpperCase(); ctrl.tansmitirSolicitacao();" maxlength="300">
+            </div>
+          </div>
+    </div><!-- Fim Row Fields 1 -->
+
+    <div class="row rowFieldMarginForm">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="form-group">
+             <label for="tipo">KM Saída:</label>
+               <div class="input-group">
+                 <span class="input-group-addon">KM</span>     
+                 <input id="" type="text" class="form-control fieldUpperCase" placeholder="Km Saída" ng-model="ctrl.solicitacao.kmsaida" ng-change="ctrl.solicitacao.kmsaida=ctrl.solicitacao.kmsaida.toUpperCase(); ctrl.tansmitirSolicitacao();" 
+                 onkeydown="Mascara(this,Integer);"
+                 onkeypress="Mascara(this,Integer);"
+                 onkeyup="Mascara(this,Integer);"
+                 maxlength="50">
+               </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="form-group">
+             <label for="tipo">KM Retorno:</label>
+               <div class="input-group">
+                 <span class="input-group-addon">R$</span>     
+                 <input id="" type="text" class="form-control fieldUpperCase" placeholder="Km Retorno" ng-model="ctrl.solicitacao.kmretorno" ng-change="ctrl.solicitacao.kmretorno=ctrl.solicitacao.kmretorno.toUpperCase(); ctrl.tansmitirSolicitacao();" 
+                onkeydown="Mascara(this,Integer);"
+                onkeypress="Mascara(this,Integer);"
+                onkeyup="Mascara(this,Integer);"
+                maxlength="50">
+              </div>
+            </div>
+          </div>
+    </div><!-- Fim Row Fields 2-->      
+
+    <div class="row rowFieldMarginForm">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="form-group">
+           <label for="">Observação:</label>            
+            <wysiwyg textarea-id="" textarea-class="form-control"  
+            textarea-height="180px" textarea-name="textareaQuestion" textarea-menu="ctrl.customMenu"
+            ng-model="ctrl.solicitacao.observacao" enable-bootstrap-title="true" ng-change="ctrl.tansmitirSolicitacao();"></wysiwyg>
+          </div>
+      </div> 
+     
+    </div> <!-- Fim Row Fields 3 -->   
+</div>

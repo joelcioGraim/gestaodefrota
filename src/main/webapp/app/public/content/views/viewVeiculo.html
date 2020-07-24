@@ -1,0 +1,228 @@
+<div ng-controller="VeiculoCtrl as ctrl">
+
+<!-- <pre>user = {{ctrl.usuario | json}}</pre> -->
+ <div class="panel panel-info panelFormMargin">
+  <div class="panel-heading">
+    <!-- <label for="nome" class="titleLabel">Cadastro de Usuário</label> -->
+    <h3 class="panel-title">Cadastro e Edição de Veículo</h3>
+    </div>
+ </div>
+<!-- ============================================ Formulário ================================================ -->
+  <form id="form" name="form" class="form-bory panel panel-info panelFormMargin" novalidate >
+
+  	<div class="row rowFieldMarginForm">
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="">Marca: </label>
+             <input id="" type="text" class="form-control fieldUpperCase" placeholder="Digite a Marca" ng-model="ctrl.veiculo.marca" ng-change="ctrl.veiculo.marca=ctrl.veiculo.marca.toUpperCase();" maxlength="100" focus-if required>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="tipo">Modelo:</label>
+             <input id="" type="text" class="form-control fieldUpperCase" placeholder="Digite o Modelo" ng-model="ctrl.veiculo.modelo" ng-change="ctrl.veiculo.modelo=ctrl.veiculo.modelo.toUpperCase();" maxlength="100" required>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="tipo">Cor:</label>
+             <input id="" type="text" class="form-control fieldUpperCase" placeholder="Digite a Cor" ng-model="ctrl.veiculo.cor" ng-change="ctrl.veiculo.cor=ctrl.veiculo.cor.toUpperCase();" maxlength="100" required>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="tipo">Chassi:</label>
+             <input id="" type="text" class="form-control" placeholder="Digite o Chassi" ng-model="ctrl.veiculo.chassi" maxlength="100" required>
+            </div>
+          </div>      
+    </div><!-- Fim Row Fields 1 -->
+
+    <div class="row rowFieldMarginForm">
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="">Número de Tombamento:</label>
+             <input id="" type="text" class="form-control" placeholder="Digite o Número de Tombamento" ng-model="ctrl.veiculo.numtombo" maxlength="100" required>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="">Renavam:</label>
+             <input id="" type="text" class="form-control" placeholder="Digite o Renavam" ng-model="ctrl.veiculo.renavam" maxlength="100" 
+             onkeydown="Mascara(this,Integer);"
+             onkeypress="Mascara(this,Integer);"
+             onkeyup="Mascara(this,Integer);" 
+             required>
+            </div>
+          </div>     
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="">Placa:</label>
+             <input id="" type="text" class="form-control fieldUpperCase" placeholder="Digite a Série" ng-model="ctrl.veiculo.placa" maxlength="7" ng-change="ctrl.veiculo.placa=ctrl.veiculo.placa.toUpperCase();"           
+             required>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="">Ano de Fabricação:</label>
+             <input id="" type="text" class="form-control" placeholder="Digite o Ano de Fabricação" ng-model="ctrl.veiculo.anoFabricacao" maxlength="4" required>
+            </div>
+          </div> 
+    </div> <!-- Fim Row Fields 2 -->      
+
+    <div class="row rowFieldMarginForm">
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="">Tipo de Combustível:</label>          
+            <select class="combobox" ng-model="ctrl.veiculo.tpcombustivel" required>          
+            <option value="" disabled selected class="selectInvalid">Selecionar...</option>
+            <option>GASOLINA</option>
+            <option>ETANOL</option>
+            <option>DIESEL</option>
+            <option>FLEX</option>          
+            </select>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group">
+             <label for="">Valor de Aquisição:</label>     
+              <div class="input-group">
+               <span class="input-group-addon">R$</span>      
+                <input id="" type="text" class="form-control" placeholder="Digite o Valor" ng-model="ctrl.veiculo.valoraquis" maxlength="100" 
+                onkeydown="Mascara(this,Valor);"
+                onkeypress="Mascara(this,Valor);"
+                onkeyup="Mascara(this,Valor);"
+                required>   
+              </div>         
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="form-group positionCenter">
+             <label for="">Está Segurado:</label>  
+              <br>
+              <input id="" type="checkbox" ng-model="ctrl.veiculo.segurado"> Sim</input>   
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3 positionRight">
+            <div class="form-group positionCenter">
+             <label for="">Veículo Ativo:</label>
+              <br>
+              <input id="" type="checkbox" ng-model="ctrl.veiculo.ativo"> Sim</input>      
+            </div>
+          </div>
+    </div> <!-- Fim Row Fields 4-->
+
+    <div class="row rowFieldMarginForm">
+
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+             <label for="">Observação:</label>            
+              <wysiwyg textarea-id="" textarea-class="form-control"  
+              textarea-height="180px" textarea-name="textareaQuestion" textarea-menu="ctrl.customMenu"
+              ng-model="ctrl.veiculo.observacao" enable-bootstrap-title="true"></wysiwyg>
+            </div>
+          </div> 
+    </div> <!-- Fim Row Fields 5 -->
+
+    <div class="row rowButondMarginForm">
+  	       <div class="positionRight">
+  		        <button class="btn btn-sm btn-info glyphicon glyphicon-ban-circle" type="button" ng-click="ctrl.limparCampos(form, ctrl.veiculo)"> Cancelar</button>
+  		        <button class="btn btn-sm btn-success positionRight glyphicon glyphicon-floppy-disk" ng-click="ctrl.salvar(ctrl.veiculo)" type="submit"
+  		        ng-disabled="form.$invalid || form.$pristine"> Salvar</button>
+  	       </div>
+    </div>
+
+  </form>
+ 
+<!-- ============================================ Lista em Tabela ================================================ -->
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Lista de Veículos Cadastrados</h3>
+    </div>
+
+    <div class="panel-body">
+    <div class="form-group col-xs-12 col-sm-12 col-md-4">
+      <label for="">Localizar:</label>
+      <input class="form-control" type="text" placeholder="Digite para localizar..." ng-model="search"                maxlength="150" ng-minlength="0" />
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                  <th>#</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Cor</th>
+                  <th>Placa</th>
+                  <th>Chassi</th>
+                  <th>Nº de Tombamento</th>
+                  <th>Renavam</th>                
+                  <th>Ano de Fabricação</th>
+                  <th>Tipo de Combustível</th>
+                  <th>Valor de Aquisição</th>
+                  <th>Segurado</th>
+                  <th>Ativo</th>                
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr ng-repeat="veiculo in ctrl.veiculos | filter: search | orderBy: 'Marca' | filterPaginacao: (ctrl.currentPage - 1) * ctrl.pageSize | limitTo: ctrl.pageSize">
+                  <td>{{$index + 1}}</td>
+                  <td>{{veiculo.marca}}</td>
+                  <td>{{veiculo.modelo}}</td>
+                  <td>{{veiculo.cor}}</td>
+                  <td>{{veiculo.placa}}</td>
+                  <td>{{veiculo.chassi}}</td>
+                  <td>{{veiculo.numtombo}}</td>
+                  <td>{{veiculo.renavam}}</td>               
+                  <td>{{veiculo.anoFabricacao}}</td>
+                  <td>{{veiculo.tpcombustivel}}</td>
+                  <td>{{veiculo.valoraquis | currency:'R$ '}}</td>
+                  <td ng-show="veiculo.segurado == true">Sim</td>
+                  <td ng-show="veiculo.segurado == false">Não</td>
+                  <td ng-show="veiculo.ativo == true">Sim</td>
+                  <td ng-show="veiculo.ativo == false">Não</td>
+                  <td>
+                      <a id="_editar" ng-click="ctrl.edit(veiculo)" class="btn btn-default" role="button">
+                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                          Editar
+                      </a>                   
+                  </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="form-group positionCenter">
+            <uib-pagination total-items="ctrl.usuarios.length" ng-model="ctrl.currentPage" items-per-page="ctrl.pageSize" previous-text="Anterior" next-text="Próximo"></uib-pagination>
+          </div>
+          <div class="form-group positionCenter">
+            Mostrar <select ng-model="ctrl.quantidade" ng-change="ctrl.setItemsPerPage(ctrl.quantidade)">          
+            <option ng-selected="true">5</option>
+            <option>10</option>
+            <option>15</option>
+            <option>20</option>
+            <option>30</option>
+            <option>40</option>
+            <option>50</option>
+            </select> registros de cada vez.
+          </div>
+        </div>  
+    </div>
+  </div>
+</div>

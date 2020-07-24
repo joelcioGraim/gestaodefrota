@@ -1,0 +1,34 @@
+ 
+<div class="modal-content">
+  <div class="modal-header titleColorBackground">
+    <button type="button" class="close" ng-click="ctrl.cancelar()">&times;</button>
+    <h4 class="modal-title titleColor">Trocar Senha</h4>
+  </div>
+  <div class="modal-body">
+    <form id="form" name="form"> 
+      <div class="form-group">
+         <label for="">Senha antiga:</label>
+         <input id="" type="password" class="form-control" placeholder="Digite sua senha atual" ng-model="ctrl.usuario.senha" maxlength="100" minlength="6" focus-if required>
+      </div>  
+      
+      <div class="form-group">
+         <label for="">Nova senha:</label>
+         <input id="" type="password" class="form-control" placeholder="Nova senha - (minimo 6 caracteres)" ng-model="ctrl.usuario.senhaNova" maxlength="100" minlength="6" required>
+      </div>
+      
+      <div class="form-group">
+         <label for="">Confirme a nova senha:</label>
+         <input id="" type="password" class="form-control" placeholder="Repita sua nova senha" ng-model="ctrl.confirmaSenhaNova" maxlength="100" minlength="6" required>
+
+        <!-- alertas -->
+        <div class="alert alert-success alturaAlert" role="alert" ng-show="ctrl.usuario.senhaNova == ctrl.confirmaSenhaNova && ctrl.confirmaSenhaNova != null">Confirmado!</div>
+        <div class="alert alert-danger alturaAlert" role="alert" ng-show="ctrl.usuario.senhaNova != ctrl.confirmaSenhaNova && ctrl.confirmaSenhaNova != null">Não Confirmado!</div>
+      </div>
+    </form> 
+   </div> <!-- fim body -->
+ 
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-info glyphicon glyphicon-ban-circle" ng-click="ctrl.cancelar()"> Cancelar</button>
+    <button type="button" class="btn btn-sm btn-success positionRight glyphicon glyphicon-floppy-disk" ng-disabled="form.$invalid || form.$pristine || ctrl.usuario.senhaNova != ctrl.confirmaSenhaNova" ng-click="ctrl.atualizar(ctrl.usuario)"> Salvar</button>
+  </div>
+</div><!-- /.modal-content  -->
